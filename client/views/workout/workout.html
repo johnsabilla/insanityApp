@@ -1,0 +1,11 @@
+<template name="workout">
+    <p>Insanity workouts</p>
+    {{#each workouts}}
+	<div>
+	{{ phase }},
+	{{ name }},
+	{{ completed }}
+	</div>
+{{/each}}
+
+</template>

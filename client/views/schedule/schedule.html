@@ -1,0 +1,16 @@
+<template name="schedule">
+    <p>Insanity schedule</p>
+    {{#each schedules}}
+    <ul class="list-group">
+    	{{#each schedule}}
+    	<a id="green" href="#" class="list-group-item ">
+    	<span class="badge">{{phase}}</span>
+    	{{name}}
+    	{{completed}}
+    	</a>
+    	{{/each}}
+    </ul>
+    {{/each}}
+</template>
+
+
