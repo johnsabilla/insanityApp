@@ -1,25 +1,27 @@
+
 Template['schedule'].helpers({
-	schedules : function(){
-		return schedules.find({});
+	schedules : function(){ 
+    var sched = schedules.find({});
+		return sched;
 	}
 });
 
-Template['schedule'].events({
+Template.schedule.events({
+  'click a' : function(event,template){
+   // $('.list-group-item').addClass('list-group-item-success');
+   console.log(template.data._id); //this gets the id
+   $('#'+event.target.id).addClass('list-group-item-success');
 
+  }
 });
 
-Template.home.created = function() {
+Template.schedules.rendered = function(){
 
-var schedules= schedules.find({});
-
-
-   $(document).ready(function() {
-
-   		for(var a = 0; a < schedules.schedule.length; a++){
-
-   			if(schedules.schedule[a].completed === 1){
-        		("#green").addClass('list-group-item-success');
-        	}
-        }
-   });
 }
+Template.schedule.rendered = function(){
+
+
+}
+
+
+
