@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # meteor-boilerplate
 
 This boilerplate is here to give you a starting point for your meteor projects, with a console tool to ease up some tasks. Essential atmosphere packages are included to give you features like routing and collection schemas out-of-the-box.  
@@ -175,3 +176,6 @@ meteor-boilerplate		# Command line tool
 
 ## License
 This boilerplate has an MIT License, see the LICENSE.txt for more information.
+=======
+# insanityApp
+>>>>>>> 89b8cbc1a8c15bdd070ca964776cc130bf1876ec
