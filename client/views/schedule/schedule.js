@@ -1,40 +1,74 @@
 
-Template['schedule'].helpers({
+Template.schedule.helpers({
 	schedules : function(){ 
-    var sched = schedules.find({});
+    var sched = schedules.find({}).fetch();
+    console.log('in helper: ', sched);
+    console.log('this helper', this);
 		return sched;
 	},
 });
 
-
 Template.schedule.events({
 
-
   'click a' : function(event,template){
-   // $('.list-group-item').addClass('list-group-item-success');
-   console.log(schedules.findOne({ _id: new Meteor.Collection.ObjectID(template.data._id._str)})); //this gets the id
    console.log(event.target.id);
-   console.log(this);
 
-   var test = schedules.findOne({ _id: new Meteor.Collection.ObjectID(template.data._id._str)});
+   var docUpdate = schedules.findOne({ _id: new Meteor.Collection.ObjectID(template.data._id._str)});
 
+   count = docUpdate.schedule.length;
    if(this.completed == 0){
-   		console.log("this", test);
-   		console.log("hello fuckface ", this.count);
 
-   		//updateSchedule(template.data.id, this.count );
-   		schedules.update({ '_id' : template.data._id }, { 'schedule': { 'completed' : 1  } });
-   		//db.schedules.update({ "_id" : ObjectId("54fa2a3ec957445b162b58e7"), "schedule.count" : 14}, {"$set" : {"schedule.$.completed" : 1  }})
-   }
-   $('#'+event.target.id).addClass('list-group-item-success');
+      var workoutUpdate = { phase : this.phase
+                           ,completed : 1
+                           ,name : this.name
+                           ,count : this.count };
+      docUpdate.schedule[this.count] = workoutUpdate;
+
+      schedules.update({ '_id' : template.data._id}, { '$set': { 'schedule': docUpdate.schedule  } });
+
+      $('#'+event.target.id).removeClass('list-group-item-danger');
+      $('#'+event.target.id).addClass('list-group-item-success');
+    }
+
+    if(this.completed == 1){
+
+      var workoutUpdate = { phase : this.phase
+                           ,completed : 0
+                           ,name : this.name
+                           ,count : this.count };
+      docUpdate.schedule[this.count] = workoutUpdate;
+
+      schedules.update({ '_id' : template.data._id}, { '$set': { 'schedule': docUpdate.schedule  } });
+
+      $('#'+event.target.id).removeClass('list-group-item-success');
+      $('#'+event.target.id).addClass('list-group-item-danger');
+    }
+
   }
+
 });
 
-Template.schedules.rendered = function(){
-
-}
 Template.schedule.rendered = function(){
-}
+  $('#my-datepicker').datepicker();
+  //console.log('css', $('#active1').find("span.completed").text());
+  //console.log('this in rendered', this.findAll('a').length);
+
+  var count = this.findAll('a').length;
+
+  var isComplete;
+
+    for(var x = 0; x < count; x++){
+
+      isComplete = $('#active'+x).find("span.completed").text();
+
+      if(isComplete === "1"){
+        $('#active'+x).addClass('list-group-item-success');
+      }
+      else{
+        $('#active'+x).addClass('list-group-item-danger');
+      }
+  }
+};
 
 
 

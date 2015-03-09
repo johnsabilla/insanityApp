@@ -1,14 +1,18 @@
 <template name="schedule">
-    <p>Insanity schedule</p>
+    <h3 class="text-center white">Insanity Schedule <span class ="glyphicon glyphicon-scale white"></span></h3>
     {{#each schedules}}
     <ul class="list-group" >
     	{{#each schedule}}
-    	<a href="#" id="active{{ count }}" class="list-group-item">
+    	<a href="#" id="active{{count}}" class="list-group-item" data-toggle="collapse" data-target="#demo">
     	   <span class="badge">{{phase}}</span>
     	   {{name}} 
-    	   <span class="completed">{{completed}}</span>
-           {{ count }}
+    	   <span class="completed text-hide">{{completed}}</span>
     	</a>
+
+        <div id="demo" class="collapse">
+           <input type="text" class="form-control" id="my-datepicker">
+        </div>
+
     	{{/each}}
     </ul>
     {{/each}}
