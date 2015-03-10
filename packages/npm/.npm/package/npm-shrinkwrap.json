@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "node-fs": {
+      "version": "0.1.7"
+    },
+    "plain-text-data-to-json": {
+      "version": "0.1.3"
+    }
+  }
+}

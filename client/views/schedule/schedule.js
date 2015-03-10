@@ -11,9 +11,12 @@ Template.schedule.helpers({
 Template.schedule.events({
 
   'click a' : function(event,template){
-   console.log(event.target.id);
+   console.log('a tag ID ',event.target.id);
+   console.log('documentID ', template.data._id);
 
-   var docUpdate = schedules.findOne({ _id: new Meteor.Collection.ObjectID(template.data._id._str)});
+   var docUpdate = schedules.findOne({ _id: template.data._id});
+
+   console.log('document', docUpdate);
 
    count = docUpdate.schedule.length;
    if(this.completed == 0){

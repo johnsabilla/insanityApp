@@ -1,4 +1,4 @@
-b.schedules.insert({ 
+{ 
 	schedule: [
 	{ count: 0,
 		phase : 1,
@@ -317,4 +317,4 @@ b.schedules.insert({
 		name: "Fit Test"
 	}
 	]
-})
+}
